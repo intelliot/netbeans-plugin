@@ -35,7 +35,9 @@ import java.util.Set;
 import org.netbeans.modules.php.api.framework.BadgeIcon;
 import org.netbeans.modules.php.api.phpmodule.PhpModule;
 import org.netbeans.modules.php.api.phpmodule.PhpModuleProperties;
+import org.netbeans.modules.php.nette.annotations.NetteAnnotationsProvider;
 import org.netbeans.modules.php.nette.utils.FileUtils;
+import org.netbeans.modules.php.spi.annotation.AnnotationCompletionTagProvider;
 import org.netbeans.modules.php.spi.editor.EditorExtender;
 import org.netbeans.modules.php.spi.framework.PhpFrameworkProvider;
 import org.netbeans.modules.php.spi.framework.PhpModuleActionsExtender;
@@ -154,5 +156,10 @@ public class NettePhpFrameworkProvider extends PhpFrameworkProvider {
     public EditorExtender getEditorExtender(PhpModule pm) {
         return null;
     }
+
+	@Override
+	public List<AnnotationCompletionTagProvider> getAnnotationsCompletionTagProviders(PhpModule phpModule) {
+		return Collections.<AnnotationCompletionTagProvider>singletonList(new NetteAnnotationsProvider());
+	}
 
 }
