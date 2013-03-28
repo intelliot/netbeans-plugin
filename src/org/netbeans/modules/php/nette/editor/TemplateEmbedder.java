@@ -72,7 +72,7 @@ public class TemplateEmbedder extends Embedder {
 			Token t = sequence.token();
 			if(t.id() == LatteTopTokenId.LATTE) {
 				latteResolver.solve(t, sequence);										// deals with all latte macros
-				SyntaxUtils.findArrayForHint(getSnapshot().getSource().getDocument(false), sequence);
+				SyntaxUtils.findArrayForHint(getSnapshot().getSource().getDocument(true), sequence);
 			} else {
 				htmlPhpResolver.solve(t, sequence);
 			}
