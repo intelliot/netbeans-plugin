@@ -28,12 +28,14 @@
 package org.netbeans.modules.php.nette;
 
 import java.io.IOException;
+import java.util.Collections;
 import java.util.Set;
 import javax.swing.JComponent;
 import javax.swing.event.ChangeListener;
 import org.netbeans.modules.php.api.phpmodule.PhpModule;
 import org.netbeans.modules.php.nette.wizards.NewNetteProjectPanel;
-import org.netbeans.modules.php.spi.phpmodule.PhpModuleExtender;
+import org.netbeans.modules.php.spi.framework.PhpModuleExtender;
+import org.netbeans.modules.php.spi.framework.PhpModuleExtender.ExtendingException;
 import org.openide.filesystems.FileObject;
 import org.openide.util.Exceptions;
 import org.openide.util.HelpCtx;
@@ -84,16 +86,20 @@ public class NettePhpModuleExtender extends PhpModuleExtender {
     @Override
     public Set<FileObject> extend(PhpModule pm) throws ExtendingException {
         try {
-            String projectDir = pm.getSourceDirectory().getPath();
+			FileObject sourceDirectory = pm.getSourceDirectory();
+			if (sourceDirectory != null) {
+				String projectDir = sourceDirectory.getPath();
 
-			NetteSandboxCreator nsc = new NetteSandboxCreator(projectDir);
-			nsc.create();
+				NetteSandboxCreator nsc = new NetteSandboxCreator(projectDir);
+				nsc.create();
 
-			if (getPanel().isCopyNetteCheckboxSelected()) {
-                nsc.copyFrameworkFiles();
-            }
+				if (getPanel().isCopyNetteCheckboxSelected()) {
+					nsc.copyFrameworkFiles();
+				}
 
-			return nsc.getCreatedFileObjects();
+				return nsc.getCreatedFileObjects();
+			}
+			return Collections.EMPTY_SET;
         } catch (IOException ex) {
             Exceptions.printStackTrace(ex);
             throw new ExtendingException(ex.getMessage());

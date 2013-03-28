@@ -32,16 +32,16 @@ import java.io.FilenameFilter;
 import java.util.Collections;
 import java.util.List;
 import java.util.Set;
-import org.netbeans.modules.php.api.phpmodule.BadgeIcon;
+import org.netbeans.modules.php.api.framework.BadgeIcon;
 import org.netbeans.modules.php.api.phpmodule.PhpModule;
 import org.netbeans.modules.php.api.phpmodule.PhpModuleProperties;
 import org.netbeans.modules.php.nette.utils.FileUtils;
-import org.netbeans.modules.php.spi.commands.FrameworkCommandSupport;
 import org.netbeans.modules.php.spi.editor.EditorExtender;
-import org.netbeans.modules.php.spi.phpmodule.PhpFrameworkProvider;
-import org.netbeans.modules.php.spi.phpmodule.PhpModuleActionsExtender;
-import org.netbeans.modules.php.spi.phpmodule.PhpModuleExtender;
-import org.netbeans.modules.php.spi.phpmodule.PhpModuleIgnoredFilesExtender;
+import org.netbeans.modules.php.spi.framework.PhpFrameworkProvider;
+import org.netbeans.modules.php.spi.framework.PhpModuleActionsExtender;
+import org.netbeans.modules.php.spi.framework.PhpModuleExtender;
+import org.netbeans.modules.php.spi.framework.PhpModuleIgnoredFilesExtender;
+import org.netbeans.modules.php.spi.framework.commands.FrameworkCommandSupport;
 import org.openide.filesystems.FileObject;
 import org.openide.filesystems.FileUtil;
 import org.openide.util.ImageUtilities;
@@ -60,7 +60,7 @@ public class NettePhpFrameworkProvider extends PhpFrameworkProvider {
 	BadgeIcon badge;
 
     public NettePhpFrameworkProvider() {
-		super(NbBundle.getMessage(NettePhpFrameworkProvider.class, "OpenIDE-Module-Name"),
+		super("Nette", NbBundle.getMessage(NettePhpFrameworkProvider.class, "OpenIDE-Module-Name"), //NOI18N
 				NbBundle.getMessage(NettePhpFrameworkProvider.class, "OpenIDE-Module-Short-Description"));
 
 		badge = new BadgeIcon(
