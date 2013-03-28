@@ -135,7 +135,7 @@
                     <build-prerequisite/>
                     <compile-dependency/>
                     <run-dependency>
-                        <release-version>0-1</release-version>
+                        <release-version>0</release-version>
                         <implementation-version/>
                     </run-dependency>
                 </dependency>
@@ -144,7 +144,7 @@
                     <build-prerequisite/>
                     <compile-dependency/>
                     <run-dependency>
-                        <release-version>0-1</release-version>
+                        <release-version>0</release-version>
                         <implementation-version/>
                     </run-dependency>
                 </dependency>
